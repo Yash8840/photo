@@ -1,14 +1,44 @@
-import React, { useEffect, useState } from "react";
-import useFirestore from "../Hooks/useFirestore";
+import React, { useEffect, useState , useContext} from "react";
 import { motion } from "framer-motion";
+import { db } from "../firebase";
+import AuthContext from "../Context/AuthContext";
+import {
+  Timestamp,
+  arrayUnion,
+  doc,
+  onSnapshot,
+  updateDoc,
+  collection
+} from "firebase/firestore";
 
 const ImageGrid = (props) => {
-  const clickHandler = (url) => {
-    props.selected(url);
+  const authCtx = useContext(AuthContext)
+  const clickHandler = (obj) => {
+    props.selected(obj);
   };
+  const [docs, setDocs] = useState(null)
 
-  const { docs } = useFirestore("images");
-  console.log(docs);
+  useEffect(() => {
+    if (!db || !authCtx.currentUser || !authCtx.currentUser.uid) {
+      console.error("Missing required variables:", { db, authCtx });
+      return;
+    }
+
+    const collectionRef = collection(db, "images");
+
+// Listen for changes to the collection
+const unsub = onSnapshot(collectionRef, (querySnapshot) => {
+  // Map the query snapshot to an array of image data objects
+  const imageData = querySnapshot.docs.map((doc) => doc.data());
+
+  // Set the image data in the state
+  setDocs(imageData);
+});
+
+    return () => {
+      unsub();
+    };
+  }, [db, authCtx.currentUser.uid]);
 
   return (
     <div className="img-grid">
@@ -20,9 +50,9 @@ const ImageGrid = (props) => {
               key={doc.id}
               layout
               whileHover={{ opacity: 1 }}
-              onClick={clickHandler.bind(null, doc.url)}>
+              onClick={clickHandler.bind(null, {img:doc.imageUrl, id:doc.imageId, clicks: doc})}>
               <motion.img
-                src={doc.url}
+                src={doc.imageUrl}
                 alt="uploaded-img"
                 initial={{ opacity: 0 }}
                 animate={{opacity: 1}}

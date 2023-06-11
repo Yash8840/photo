@@ -1,0 +1,85 @@
+.theme {
+  /* background: linear-gradient(239.26deg, #ddeeed 63.17%, #fdf1e0 94.92%); */
+}
+.formContainer {
+  background: linear-gradient(239.26deg, #ddeeed 63.17%, #fdf1e0 94.92%);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: 100vw;
+}
+
+.formWrapper {
+  background-color: white;
+  padding: 20px 60px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 55%;
+  align-items: center;
+}
+
+.logo {
+  color: #5d5b8d;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.title {
+  color: #5d5b8d;
+  font-size: 12px;
+}
+
+.authForm{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.authForm input {
+  padding: 15px;
+  border: none;
+  width: 150px;
+  border-bottom: 1px solid #a7bcff;
+  &::placeholder {
+    color: rgb(175, 175, 175);
+  }
+}
+
+button {
+  background-color: #7b96ec;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.authForm label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #8da4f1;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.authForm label img {
+  width: 32px;
+}
+
+p {
+  color: #5d5b8d;
+  font-size: 12px;
+  margin-top: 10px;
+}
+h2{
+  color: #5d5b8d;
+  font-style: italic;
+  font-family:'Times New Roman', Times, serif;
+}
