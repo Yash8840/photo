@@ -22,7 +22,7 @@ const UploadForm = () => {
   };
   return (
     <form className=".imgForm">
-      <label className="imgLabel">
+      <label className="imgLabel"  style={{cursor:'pointer'}}>
         <input className="imgInput" type="file" onChange={changeHandler} />
         <span style={{ position: "relative", left: "8px" }}>+</span>
       </label>

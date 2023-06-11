@@ -33,7 +33,7 @@ const Modal = (props) => {
     if (!db || !authCtx.currentUser || !authCtx.currentUser.uid) {
       console.error("Missing required variables:", { db, authCtx });
       return;
-    }
+    } 
 
     const unsub = onSnapshot(doc(db, "images", props.selectedObj.id), (doc) => {
       if (doc.exists()) {
@@ -69,7 +69,7 @@ const Modal = (props) => {
         </span>
        
         <span>
-          Total Clicks On Your image Link - <span>{clicks}</span>
+          Total Clicks On Your image Link - <span style={{color:'red', fontWeight:'600', fontSize:'larger'}}>{clicks}</span>
         </span>
         <div style={{ marginTop: "20px", width: "50%", textAlign: "center" }}>
           You can now share this image link with your friends.

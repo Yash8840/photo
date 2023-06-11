@@ -59,7 +59,7 @@ const Register = () => {
               photoURL: downloadURL,
             }); // we added the user's uniques id becasue fetching the user becomes easy, we just have to do user.uid
             // await setDoc(doc(db, "images", res.user.uid), { images: [] });
-
+            
             setIsLoading(false)
             navigate("/");
           });
